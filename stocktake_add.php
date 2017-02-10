@@ -34,9 +34,11 @@
 								while($row = mysqli_fetch_assoc($result)) {
 							    // output data of each row
 							        echo'<label id="'. $row["idStocktake"].'"
-					        			 class="btn '.$row["status"].' '.$row["Region"].'"
-					        			  >'  . $row["name"].'<br></label> 					
-					        			  <input  value="'.$row["idStocktake"].'" type="text" name="id" hidden>	';
+					        			 class="btn '.$row["status"].' '.$row["Region"].'">'  
+					        			 . $row["name"].'<br></label> 					
+					        			  <input  value="'.$row["idStocktake"].'" type="text" name="id" hidden>	
+					        			  <br>Stocktake date: 	<br><input class="inputstyle" type="date" name="date" value='.$row["date"].'>'
+					        			  ;
 							    }
 							} else {
 							    echo "0 results";
@@ -45,23 +47,19 @@
 							mysqli_close($conn);
 
 						?>
-  				<br>Stocktake date: 	<br>
-					<input  type="date" name="date">	
+  					
   				
   				
-  				<br>Stocktake time: 	<br>
-					<input type="time" name="time">
+  				<br>Stocktake time: 	<br><input class="inputstyle" type="time" name="time">
 
   				
 
-  				<br>Comments: <br>
-  					<textarea name="comment">Enter text here...</textarea>
+  				<br>Comments: 			<br><textarea class="inputstyle" name="comment">Enter text here...</textarea>
 				
 
 				<br><br>
-  				<input type="submit" value="Send Offer">
-				<input type="submit" value="Confirm">
-				<input type="submit" value="Save Offer">
+  				<input class="inputstyle" type="submit" value="Save"> <br>
+				<input class="inputstyle" type="submit" value="Confirm">
 
 
 			

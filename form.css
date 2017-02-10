@@ -78,21 +78,7 @@
 #calBox{
     padding-left: 20px;
 }
-#normaldiv{
-    width: 97%;
-    padding:20px;
-    border: 1px solid rgba(0,0,0,.2);
-    -moz-border-radius: 5px;
-    -webkit-border-radius: 5px;
-    border-radius: 5px;
-    -moz-background-clip: padding;
-    -webkit-background-clip: padding-box;
-    background-clip: padding-box;
-    background:#D3D3D3;/* rgba(0, 0, 0, 0.5); */
-    -moz-box-shadow: 0 0 7px 1px rgba(0,0,0,.5);
-    -webkit-box-shadow: 0 0 7px 1px rgba(0,0,0,.5);
-    box-shadow: 0 0 7px 1px rgba(0,0,0,.5);
-}
+
 .stocktakeLink{
     text-decoration: none;
 }
@@ -250,6 +236,42 @@
     float:left; 
 
     }
+/*-------------------------------------------------------
+    stocktake add input fields
+*/
+#normaldiv{
+    width: 90%;
+    padding:20px;
+    border: 1px solid rgba(0,0,0,.2);
+    -moz-border-radius: 5px;
+    -webkit-border-radius: 5px;
+    border-radius: 5px;
+    -moz-background-clip: padding;
+    -webkit-background-clip: padding-box;
+    background-clip: padding-box;
+    background:#D3D3D3;/* rgba(0, 0, 0, 0.5); */
+    -moz-box-shadow: 0 0 7px 1px rgba(0,0,0,.5);
+    -webkit-box-shadow: 0 0 7px 1px rgba(0,0,0,.5);
+    box-shadow: 0 0 7px 1px rgba(0,0,0,.5);
+}
+
+    .inputstyle{
+        width:100%;
+        text-align: center;
+
+        padding: 12px 20px;
+        margin: 8px 0;
+        display: inline-block;
+        border: 1px solid #ccc;
+        border-radius: 4px;
+        box-sizing: border-box;
+    }
+
+input[type=submit]:hover {
+    background-color: #45a049;
+    color:white;
+}
+/*=======================================================*/
 /*=======================================================*/
 /* Footer styles */
 #footer {

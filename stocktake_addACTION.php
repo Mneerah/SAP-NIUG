@@ -22,25 +22,33 @@
 		<h2> Modify Stocktake </h2>
 						<?php 
 							require ("db_connect.php");
-							$id= $_GET['id'];
 
-							$sql = "SELECT idStocktake,status,date,idStore,Store_id, 
-											name,addressLine1,addressLine2,County,Region
-									FROM stocktake,store where (Store_id=idStore) and (idStocktake='$id');";
+							$id= $_POST['id'];
+							$date = $_POST['date'];
+							$time = $_POST['time'];
+							$comment= $_POST['comment'];
 
-							$result = mysqli_query($conn, $sql);
-							//echo $result;
-							if (mysqli_num_rows($result) > 0) {
-								while($row = mysqli_fetch_assoc($result)) {
-							    // output data of each row
-							        echo'<label id="'. $row["idStocktake"].'"
-					        			 class="btn '.$row["status"].' '.$row["Region"].'"
-					        			  >'  . $row["name"].'<br></label> 					
-					        			  <input  value="'.$row["idStocktake"].'" type="text" name="id" hidden>	';
-							    }
-							} else {
-							    echo "0 results";
+							if($_POST['mybutton'] == 'Save')
+							{
+							  $status="Pending";
 							}
+							elseif($_POST['mybutton'] == 'Confirm')
+							{
+							  $status="Confirmed";
+							}
+
+							$sql = "UPDATE stocktake
+									SET status='$status', date='$date', time='$time', Comment='$comment'
+									WHERE idStocktake='$id';";
+
+							//$result = mysqli_query($conn, $sql);
+
+							if ($conn->query($sql) === TRUE) {
+								echo "- Record updated successfully";
+							} else {
+							    echo "-Error updating record: " . $conn->error;
+							}
+							
 
 							mysqli_close($conn);
 

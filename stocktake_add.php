@@ -24,19 +24,32 @@
 							require ("db_connect.php");
 							$id= $_GET['id'];
 
-							$sql = "SELECT idStocktake,status,date,idStore,Store_id, 
-											name,addressLine1,addressLine2,County,Region
+							$sql = "SELECT idStocktake,status,date,time,Comment, Supervisor_Staff_id,
+											idStore,Store_id, 
+											name,addressLine1,addressLine2,
+											County,Region
 									FROM stocktake,store where (Store_id=idStore) and (idStocktake='$id');";
-
+							$SupervisorIsSet="No supervisor is assigned yet.";
 							$result = mysqli_query($conn, $sql);
 							//echo $result;
 							if (mysqli_num_rows($result) > 0) {
 								while($row = mysqli_fetch_assoc($result)) {
 							    // output data of each row
-							        echo'<label id="'. $row["idStocktake"].'"
-					        			 class="btn '.$row["status"].' '.$row["Region"].'"
-					        			  >'  . $row["name"].'<br></label> 					
-					        			  <input  value="'.$row["idStocktake"].'" type="text" name="id" hidden>	';
+									if($row["Supervisor_Staff_id"]!= null)
+										$SupervisorIsSet="Supervisor is assigned!";
+
+							        echo'
+										<label id="'. $row["idStocktake"].'" class="btn '.$row["status"].' '.$row["Region"].'">'  
+					        			 . $row["name"].'<br></label> <i> » '.$SupervisorIsSet.'</i>	<br>
+
+					        			  <input  value="'.$row["idStocktake"].'" type="text" name="id" hidden>	
+					        			  <br>Stocktake date: 	
+					        			  <br><input class="inputstyle" type="date" name="date" value='.$row["date"].'>
+										  <br>Stocktake time: 	
+										  <br><input class="inputstyle" type="time" name="time" value='.$row["time"].'>
+										  <br>Comments: 			
+										  <br><textarea class="inputstyle" name="comment">'.$row["Comment"].'</textarea>
+					        			  ' ;
 							    }
 							} else {
 							    echo "0 results";
@@ -45,23 +58,14 @@
 							mysqli_close($conn);
 
 						?>
-  				<br>Stocktake date: 	<br>
-					<input  type="date" name="date">	
+  					
   				
   				
-  				<br>Stocktake time: 	<br>
-					<input type="time" name="time">
-
   				
-
-  				<br>Comments: <br>
-  					<textarea name="comment">Enter text here...</textarea>
-				
 
 				<br><br>
-  				<input type="submit" value="Send Offer">
-				<input type="submit" value="Confirm">
-				<input type="submit" value="Save Offer">
+  				<input class="inputstyle" type="submit" name="mybutton" value="Save"> <br>
+				<input class="inputstyle" type="submit" name="mybutton" value="Confirm">
 
 
 			

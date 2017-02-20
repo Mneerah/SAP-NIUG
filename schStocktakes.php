@@ -15,15 +15,18 @@
 
 				function drop(ev) {
 				    var data = ev.dataTransfer.getData(Text);
-				    ev.target.appendChild(document.getElementById(data));
-				    if ( document.getElementById(data).classList.contains('New'))
-				    	document.getElementById(data).classList.remove('New');
-					if( document.getElementById(data).classList.contains('Confirmed'))
-						document.getElementById(data).classList.remove('Confirmed');
-				    if(document.getElementById(data).classList.contains('Pending'))
-				    	document.getElementById(data).classList.remove('Pending');
-				    document.getElementById(data).classList.add('Temp')
-				    ev.preventDefault();
+				if( ev.target.className=='daylong'){
+					    ev.target.appendChild(document.getElementById(data));
+
+					    if ( document.getElementById(data).classList.contains('New'))
+					    	document.getElementById(data).classList.remove('New');
+						if( document.getElementById(data).classList.contains('Confirmed'))
+							document.getElementById(data).classList.remove('Confirmed');
+					    if(document.getElementById(data).classList.contains('Pending'))
+					    	document.getElementById(data).classList.remove('Pending');
+					    document.getElementById(data).classList.add('Temp')
+					}					    
+					ev.preventDefault();
 				}
 				function openstocktake(st_id){
 					window.open('stocktake_add.php?id='+st_id+'&date=?', "ADD-STOCKTAKE", "width=500,height=500");				    
@@ -71,9 +74,9 @@
 			<ul class="navigation">
 			  <li><a href="#clients" >Clients</a></li>
 			  <li><a href="#stores">Stores</a></li>
-			  <li ><a href="home.php" >Home</a></li>
+			  <li ><a href="home.php" class="activeTab" >Home</a></li>
 			  <li><a href="#staff">Staff</a></li>
-			  <li><a href="schStocktakes.php" class="activeTab">Stocktakes</a></li>
+			  <li><a href="schStocktakes.php" >Stocktakes</a></li>
 			</ul>
 							
 				
